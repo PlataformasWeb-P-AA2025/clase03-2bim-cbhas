@@ -4,7 +4,8 @@ from django.template import RequestContext
 from django.shortcuts import render
 
 # importar las clases de models.py
-from administrativo.models import *
+from .models import *
+
 
 # Create your views here.
 
@@ -34,7 +35,7 @@ def obtener_estudiante(request, id):
     # los registros de la entidad; el listado obtenido
     # se lo almacena en una variable llamada
     # estudiantes
-    estudiante = Estudiante.objects.get(pk=id) # get: obtener un registro
+    estudiante = Estudiante.objects.get(pk=id)  # get: obtener un registro
 
     # en la variable tipo diccionario llamada informacion_template
     # se agregará la información que estará disponible
