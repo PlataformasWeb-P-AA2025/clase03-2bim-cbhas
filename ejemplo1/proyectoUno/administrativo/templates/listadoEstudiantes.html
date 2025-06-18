@@ -4,13 +4,11 @@ Número de estudiantes {{ numero_estudiantes }}
 <br/>
 
 <ul>
+    {% for e in estudiantes %}
 
-{% for e in estudiantes %}
+    <li>{{ e.nombre }} - {{ e.apellido }}</li>
 
-  <li>{{e}}</li>
-
-{% endfor %}
-
+    {% endfor %}
 </ul>
 
 <hr>
