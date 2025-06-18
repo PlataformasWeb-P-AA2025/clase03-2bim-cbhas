@@ -4,10 +4,11 @@ from django.template import RequestContext
 from django.shortcuts import render
 
 # importar las clases de models.py
-from administrativo.models import *
+from .models import *
 
 # importar los formularios de forms.py
-from administrativo.forms import *
+from .forms import *
+
 
 # Create your views here.
 
@@ -27,6 +28,10 @@ def index(request):
     informacion_template = {'estudiantes': estudiantes, 'numero_estudiantes': len(estudiantes)}
     return render(request, 'index.html', informacion_template)
 
+def indexpais(request):
+    paises = Pais.objects.all()
+    informacion_template = {'paises': paises, 'numero_pais': len(paises)}
+    return render(request, 'indexpais.html', informacion_template)
 
 def obtener_estudiante(request, id):
     """
@@ -45,11 +50,16 @@ def obtener_estudiante(request, id):
     return render(request, 'obtener_estudiante.html', informacion_template)
 
 
+def obtener_pais(request, id):
+    pais = Pais.objects.get(pk=id)
+    informacion_template = {'pais': pais}  # cambia 'paises' -> 'pais'
+    return render(request, 'obtener_pais.html', informacion_template)
+
 def crear_estudiante(request):
     """
     """
     print(request)
-    if request.method=='POST':
+    if request.method == 'POST':
         formulario = EstudianteForm(request.POST)
         print(formulario.errors)
         if formulario.is_valid():
@@ -61,6 +71,19 @@ def crear_estudiante(request):
 
     return render(request, 'crearEstudiante.html', diccionario)
 
+def crear_pais(request):  # Quita el parámetro id
+    print(request)
+    if request.method == 'POST':
+        formulario = PaisForm(request.POST)
+        print(formulario.errors)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(indexpais)  # Redirige correctamente a la vista de países
+    else:
+        formulario = PaisForm()
+    diccionario = {'formulario': formulario}
+
+    return render(request, 'crearPais.html', diccionario)
 
 def editar_estudiante(request, id):
     """
@@ -70,7 +93,7 @@ def editar_estudiante(request, id):
     print("---------------")
     estudiante = Estudiante.objects.get(pk=id)
     # Deber: consultar
-    if request.method=='POST':
+    if request.method == 'POST':
         formulario = EstudianteForm(request.POST, instance=estudiante)
         print(formulario.errors)
         if formulario.is_valid():

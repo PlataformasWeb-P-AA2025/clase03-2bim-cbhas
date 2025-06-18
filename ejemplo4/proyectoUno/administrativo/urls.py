@@ -9,6 +9,9 @@ from . import views
 
 urlpatterns = [
         path('', views.index, name='index'),
+        path('pais', views.indexpais, name='indexpais'),
+        path('pais/<int:id>', views.obtener_pais, name='obtener_pais'),
+        path('crear/pais', views.crear_pais, name='crearPais'),
         path('estudiante/<int:id>', views.obtener_estudiante,
             name='obtener_estudiante'),
         path('crear/estudiante', views.crear_estudiante,
@@ -16,5 +19,5 @@ urlpatterns = [
         path('editar/estudiante/<int:id>', views.editar_estudiante,
             name='editar_estudiante'),
         path('eliminar/estudiante/<int:id>', views.eliminar_estudiante,
-            name='eliminar_estudiante'),
+            name='eliminar_estudiante')
  ]
