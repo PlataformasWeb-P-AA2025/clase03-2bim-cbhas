@@ -6,27 +6,30 @@ class Estudiante(models.Model):
     opciones_tipo_estudiante = (
         ('becado', 'Estudiante Becado'),
         ('no-becado', 'Estudiante No Becado'),
-        )
+    )
 
     nombre = models.CharField("Nombre de estudiante", max_length=30)
     apellido = models.CharField(max_length=30)
     cedula = models.CharField(max_length=30, unique=True)
-    edad = models.IntegerField("edad de estudiante") # Verbose field names
-    tipo_estudiante = models.CharField(max_length=30, \
-            choices=opciones_tipo_estudiante)
+    edad = models.IntegerField("edad de estudiante")
+    tipo_estudiante = models.CharField(max_length=30, choices=opciones_tipo_estudiante)
     modulos = models.ManyToManyField('Modulo', through='Matricula')
 
-
     def __str__(self):
-        return "%s - %s - %s - edad: %d - tipo: %s" % (self.nombre,
-                self.apellido,
-                self.cedula,
-                self.edad,
-                self.tipo_estudiante)
+        return "%s - %s - %s - edad: %d - tipo: %s" % (
+            self.nombre,
+            self.apellido,
+            self.cedula,
+            self.edad,
+            self.tipo_estudiante
+        )
 
     def obtener_matriculas(self):
         return self.lasmatriculas.all()
-        
+
+    def total_matriculas(self):
+        return sum(m.costo for m in self.obtener_matriculas())
+
 
 class Modulo(models.Model):
     """
@@ -61,3 +64,5 @@ class Matricula(models.Model):
     def __str__(self):
         return "Matricula: Estudiante(%s) - Modulo(%s)" % \
                 (self.estudiante, self.modulo.nombre)
+
+        

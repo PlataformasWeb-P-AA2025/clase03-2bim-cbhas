@@ -53,14 +53,19 @@
       {{e.apellido}}
     </td>
     <td>
-      {{e.tipo_estudiante}}
+      {{e.get_tipo_estudiante_display}}
     </td>
     <td>
       {{e.edad}}
     </td>
     <td>
-      
-    </td>
+      <ul>
+        {% for m in e.obtener_matriculas %}
+          Modulo: {{ m.modulo.nombre }}<br>Costo: ${{ m.costo }}<br><br>
+        {% endfor %}
+        Costo Total: {{ e.total_matriculas }}
+      </ul>
+    </td>    
   </tr>
   {% endfor %}
 </table>

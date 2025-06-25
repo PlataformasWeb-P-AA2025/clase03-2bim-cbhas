@@ -5,7 +5,7 @@ from administrativo.models import Matricula, Estudiante
 class MatriculaForm(ModelForm):
     class Meta:
         model = Matricula
-        fields = ['estudiante', 'modulo', 'comentario']
+        fields = ['estudiante', 'modulo', 'comentario', 'costo']
 
 
 
@@ -26,16 +26,4 @@ class MatriculaEditForm(ModelForm):
                 'cols': 40,
                 'placeholder': 'Escribe aquí tu comentario...'
             }),}
-
-
-class EstudianteForm(ModelForm):
-    class Meta:
-        model = Estudiante
-        fields = ['nombre', 'apellido', 'cedula', 'edad', 'tipo_estudiante']
-        widgets = {
-            'nombre': forms.TextInput(attrs={'placeholder': 'Nombre'}),
-            'apellido': forms.TextInput(attrs={'placeholder': 'Apellido'}),
-            'cedula': forms.TextInput(attrs={'placeholder': 'Cédula'}),
-            'edad': forms.NumberInput(attrs={'placeholder': 'Edad'}),
-            'tipo_estudiante': forms.Select(),
-        }
+        
