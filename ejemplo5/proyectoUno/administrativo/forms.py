@@ -29,7 +29,6 @@ class NumeroTelefonicoForm(ModelForm):
 
 
 class NumeroTelefonicoEstudianteForm(ModelForm):
-
     def __init__(self, estudiante, *args, **kwargs):
         super(NumeroTelefonicoEstudianteForm, self).__init__(*args, **kwargs)
         self.initial['estudiante'] = estudiante
