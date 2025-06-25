@@ -14,10 +14,17 @@ def index(request):
     """
     """
     matriculas = Matricula.objects.all()
-
+    estudiantes = Estudiante.objects.all()
+    
     titulo = "Listado de matriculas"
-    informacion_template = {'matriculas': matriculas,
-    'numero_matriculas': len(matriculas), 'mititulo': titulo}
+    titulo2 = "Listado de estudiantes"
+    informacion_template = {
+        'matriculas': matriculas,
+        'numero_matriculas': len(matriculas), 
+        'mititulo': titulo, 
+        'estudiantes': estudiantes,
+        'numero_estudiantes': len(estudiantes),
+        'mititulo2': titulo2}
     return render(request, 'index.html', informacion_template)
 
 

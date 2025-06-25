@@ -27,7 +27,7 @@ class MatriculaAdmin(admin.ModelAdmin):
     # por cada registro
     # se deja de usar la representación (str) 
     # de la clase 
-    list_display = ('estudiante', 'modulo', 'comentario')
+    list_display = ('estudiante', 'modulo', 'comentario', 'costo')
     search_fields = ('estudiante__nombre', 'modulo__nombre')
 
 admin.site.register(Matricula, MatriculaAdmin)

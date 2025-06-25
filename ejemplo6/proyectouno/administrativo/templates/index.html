@@ -29,5 +29,38 @@
     </td>
   </tr>
   {% endfor %}
+</table>
 
+<br><br>
+
+<h1>{{mititulo2}}</h1>
+<hr>
+<h3>Número de estudiantes {{ numero_estudiantes }}</h3>
+<table border="1px">
+  <tr>
+    <th><b>Estudiante</b></th>
+    <th><b>Apellido</b></th>
+    <th><b>Tipo</b></th>
+    <th><b>Edad</b></th>
+    <th><b>Matriculas</b></th>
+  </tr>
+  {% for e in estudiantes %}
+  <tr>
+    <td>
+      {{e.nombre}}
+    </td>
+    <td>
+      {{e.apellido}}
+    </td>
+    <td>
+      {{e.tipo_estudiante}}
+    </td>
+    <td>
+      {{e.edad}}
+    </td>
+    <td>
+      
+    </td>
+  </tr>
+  {% endfor %}
 </table>
